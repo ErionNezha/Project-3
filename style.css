@@ -1,0 +1,241 @@
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+:root {
+	--bg-dark-blue: #012459;
+	--bg-v-dark-blue: #040b3c;
+	--white: #fff;
+	--light-grey: #b3b3b3;
+	--yellow: #ffea00;
+	--orange: #ffa500;
+	--shine:  #e6e6e6;
+	--purp-blue: #4a5187;
+	--sky-blue: #53caff;
+	--grey: rgba(0, 0, 0, 0.5);
+	--coefficient: 1vmin;
+	--circle-size: 75;
+}
+
+body {
+	background: #040b3c;
+	background: -webkit-gradient(linear, left top, left bottom, from(var(--bg-dark-blue)), to(var(--bg-v-dark-blue)));
+	background: linear-gradient(to bottom, var(--bg-dark-blue) 0%, var(--bg-v-dark-blue) 100%);
+	background-repeat: no-repeat;
+	min-height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+	overflow: hidden;
+}
+
+.circle {
+	height: calc(var(--circle-size) * var(--coefficient));
+	width: calc(var(--circle-size) * var(--coefficient));
+	border: calc(2 * var(--coefficient)) solid var(--white);
+	border-radius: 50%;
+	position: relative;
+	box-shadow: 0 10px 30px var(--grey);
+	background: -webkit-gradient(linear, left bottom, right top, from(var(--bg-v-dark-blue)), color-stop(30%, var(--bg-dark-blue)));
+	background: linear-gradient(to top right, var(--bg-v-dark-blue) 0%, var(--bg-dark-blue) 30%);
+	overflow: hidden;
+}
+
+.star {
+	--left: calc(var(--posX) * 3%);
+	--top: calc(var(--posY) * 3%);
+	position: absolute;
+	background: var(--white);
+	height: calc(var(--w) * 0.12%);
+	width: calc(var(--w) * 0.1%);
+	border-radius: 50%;
+	left: var(--left);
+	top: var(--top);
+	-webkit-transform: translateX(-300px);
+	        transform: translateX(-300px);
+	opacity: var(--alpha);
+	-webkit-animation: star-move calc((var(--group) * 40) * 1s) linear infinite;
+	        animation: star-move calc((var(--group) * 40) * 1s) linear infinite;
+}
+
+@-webkit-keyframes star-move {
+  0% {
+    -webkit-transform: rotate(-20deg) translateX(-500px);
+            transform: rotate(-20deg) translateX(-500px);
+  }
+  100% {
+    -webkit-transform: rotate(-20deg) translateX(500px);
+            transform: rotate(-20deg) translateX(500px);
+  }
+}
+
+@keyframes star-move {
+  0% {
+    -webkit-transform: rotate(-20deg) translateX(-500px);
+            transform: rotate(-20deg) translateX(-500px);
+  }
+  100% {
+    -webkit-transform: rotate(-20deg) translateX(500px);
+            transform: rotate(-20deg) translateX(500px);
+  }
+}
+
+.ufo {
+	-webkit-box-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	        align-items: center;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+.ufo__laser {
+	opacity: 0;
+	will-change: opacity;
+	position: absolute;
+	height: 100%;
+	width: 48%;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, 0);
+	        transform: translate(-50%, 0);
+  box-shadow:
+    inset 20px 0 80px #f0f,
+    inset -20px 0 80px #0ff,
+    inset 20px 0 300px #f0f,
+    inset -20px 0 300px #0ff,
+    0 0 50px #fff,
+    -10px 0 80px #f0f,
+    10px 0 80px #0ff;
+	-webkit-clip-path: polygon(40% 0, 60% 0, 70% 100%, 25% 100%);
+	        clip-path: polygon(40% 0, 60% 0, 70% 100%, 25% 100%);
+}
+
+.ufo__wrapper {
+	width: 100%;
+	height: 50%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+
+.ufo__light {
+	height: 45%;
+	width: 0.5%;
+	background: var(--light-grey);
+	-webkit-clip-path: circle(50% at 50% 100%);
+	        clip-path: circle(50% at 50% 100%);
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	z-index: 3;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+
+.ufo__light:before {
+	position: absolute;
+	content: '';
+	top: 65%;
+	height: 10%;
+	width: 400%;
+	border-radius: 50%;
+	-webkit-animation: light 2s infinite ease-in-out;
+	        animation: light 2s infinite ease-in-out;
+	background: yellow;
+	left: 50%;
+	-webkit-transform: translate(-50%, 0);
+	        transform: translate(-50%, 0);
+}
+
+@-webkit-keyframes light {
+  from { background-color: var(--yellow); }
+  to { background-color: var(--orange); }
+}
+
+@keyframes light {
+  from { background-color: var(--yellow); }
+  to { background-color: var(--orange); }
+}
+
+.ufo__roof {
+	height: 25%;
+	width: 25%;
+	background: var(--light-grey);
+	-webkit-clip-path: circle(50% at 50% 100%);
+	        clip-path: circle(50% at 50% 100%);
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	z-index: 3;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+
+.ufo__roof:before {
+	position: absolute;
+	content: '';
+	height: 15%;
+	width: 4%;
+	right: 27%;
+	top: 50%;
+	background: var(--shine);
+	-webkit-transform: rotate(-30deg);
+	        transform: rotate(-30deg);
+	border-radius: 50%;
+}
+
+.ufo__body {
+	height: 50%;
+	width: 50%;
+	background: var(--purp-blue);
+	-webkit-clip-path: ellipse(50% 13% at 50% 50%);
+	        clip-path: ellipse(50% 13% at 50% 50%);
+	position: absolute;
+	top: 55%;
+	z-index: 2;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+
+.ufo__undercarriage {
+	height: 15%;
+	width: 40%;
+	background: var(--purp-blue);
+	top: 58%;
+	z-index: 1;
+}
+
+.ufo__undercarriage,
+.ufo__beam {
+	position: absolute;
+	-webkit-clip-path: ellipse(50% 50% at 50% 50%);
+	        clip-path: ellipse(50% 50% at 50% 50%);
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+
+.ufo__beam {
+	height: 7%;
+	width: 10%;
+	background: var(--sky-blue);
+	top: 65%;
+}
+
+.person img {
+	position: absolute;
+	width: 6%;
+	bottom: 0%;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	        transform: translateX(-50%);
+}
